@@ -1,12 +1,33 @@
+const url = require('../../models/url');
+
 module.exports = (express) => {
   const router = express.Router();
 
 //pulls in user input, shortens it, responds with original and new url
+// router.post('/urls', (req, res) => {
+//   var shortURL = require('../shorten');
+//   url.create(req.body, (err) =>{
+//     res.json({url: req.body.url, short: req.body.shortURL.shortURL()});
+//   })
+// });
+
+// router.post('/urls', (req, res) => {
+//   var shortURL = require('../shorten');
+//   url.create({url: req.body.url, short: req.body.shortURL.shortURL()});
+// });
+
+
 router.post('/urls', (req, res) => {
   var shortURL = require('../shorten');
-  res.json({url: req.body.url, short: shortURL.shortURL()});
 
+  url.create(req.body, (err) => {
+    res.json({url: req.body.url, short: req.body.shortURL.shortURL()});
+    res.status(500).json(err);
+  }, (data) => {
+    res.status(200).json(data);
+  })
 });
+
 
 //gets all urls
   router.get('/urls', (req, res) => {
@@ -26,13 +47,13 @@ router.post('/urls', (req, res) => {
   });
 
 //creates creates a url
-router.post('/url', (req, res) => {
-  url.create(req.body, (err) => {
-    res.status(500).json(err);
-  }, (data) => {
-    res.status(200).json(data);
-  })
-});
+// router.post('/urls', (req, res) => {
+//   url.create(req.body, (err) => {
+//     res.status(500).json(err);
+//   }, (data) => {
+//     res.status(200).json(data);
+//   })
+// });
 
 //updates a specific urls information
 router.post('/urls/:id', (req, res) => {

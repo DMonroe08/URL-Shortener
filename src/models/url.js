@@ -1,4 +1,4 @@
-const db = reqire('./db');
+const db = require('./db');
 
 //exports new url into database
 exports.create = (payload, err, success) => {
