@@ -18,8 +18,6 @@ module.exports = (express) => {
 
 
 router.post('/urls', (req, res) => {
-
-
   url.create(req.body, (err) => {
     req.body.shortURL.shortURL();
     var shortURL = require('../shorten');
