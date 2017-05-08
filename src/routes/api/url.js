@@ -18,9 +18,11 @@ module.exports = (express) => {
 
 
 router.post('/urls', (req, res) => {
-  var shortURL = require('../shorten');
+
 
   url.create(req.body, (err) => {
+    req.body.shortURL.shortURL();
+    var shortURL = require('../shorten');
     res.json({url: req.body.url, short: req.body.shortURL.shortURL()});
     res.status(500).json(err);
   }, (data) => {
@@ -61,6 +63,16 @@ router.post('/urls/:id', (req, res) => {
   url.update(req.body, (err) => {
     res.status(500).json(err);
   }, (data) => {
+    res.status(200).json(data);
+  })
+});
+
+//deletes url by id
+router.delete('/urls/:id', (req, res) => {
+  req.body.id = req.params.id;
+  url.destroy  (req.body, (err) => {
+    res.status(500).json(err);
+  }  , (data)=>{
     res.status(200).json(data);
   })
 });
