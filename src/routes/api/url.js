@@ -18,16 +18,27 @@ module.exports = (express) => {
 // });
 
 
+// router.post('/urls', (req, res) => {
+//   url.create(req.body, (err) => {
+//     req.body.shortURL.shortURL();
+//     var shortURL = require('../shorten');
+//     res.json({url: req.body.url, short: req.body.shortURL.shortURL()});
+//     res.status(500).json(err);
+//     tool.debug('Error: creating a new URL failed', data, 'Error');
+//   }, (data) => {
+//     res.status(200).json(data);
+//     tool.debug('A new URL was created', data, true);
+//   })
+// });
+
 router.post('/urls', (req, res) => {
   url.create(req.body, (err) => {
     req.body.shortURL.shortURL();
     var shortURL = require('../shorten');
     res.json({url: req.body.url, short: req.body.shortURL.shortURL()});
     res.status(500).json(err);
-    tool.debug('Error: creating a new URL failed', data, 'Error');
   }, (data) => {
     res.status(200).json(data);
-    tool.debug('A new URL was created', data, true);
   })
 });
 
@@ -54,7 +65,7 @@ router.post('/urls', (req, res) => {
     })
   });
 
-//creates creates a url
+// //creates creates a url
 // router.post('/urls', (req, res) => {
 //   url.create(req.body, (err) => {
 //     res.status(500).json(err);
