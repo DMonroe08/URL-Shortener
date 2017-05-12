@@ -5,34 +5,13 @@ module.exports = (express) => {
   const router = express.Router();
 
 //pulls in user input, shortens it, responds with original and new url
-// router.post('/urls', (req, res) => {
-//   var shortURL = require('../shorten');
-//   url.create(req.body, (err) =>{
-//     res.json({url: req.body.url, short: req.body.shortURL.shortURL()});
-//   })
-// });
-
-// router.post('/urls', (req, res) => {
-//   var shortURL = require('../shorten');
-//   url.create({url: req.body.url, short: req.body.shortURL.shortURL()});
-// });
-
-
-// router.post('/urls', (req, res) => {
-//   url.create(req.body, (err) => {
-//     req.body.shortURL.shortURL();
-//     var shortURL = require('../shorten');
-//     res.json({url: req.body.url, short: req.body.shortURL.shortURL()});
-//     res.status(500).json(err);
-//     tool.debug('Error: creating a new URL failed', data, 'Error');
-//   }, (data) => {
-//     res.status(200).json(data);
-//     tool.debug('A new URL was created', data, true);
-//   })
-// });
-
 router.post('/urls', (req, res) => {
-  url.create(req.body, (err) => {
+  var shorten = require('../shorten');
+console.log("=======", shorten.shortURL());
+  // url.create(payload =>{}, err, success)
+
+var workingURL = {url : req.body.url, short : shorten.shortURL()};
+  url.create(workingURL, (err) => {
     req.body.shortURL.shortURL();
     var shortURL = require('../shorten');
     res.json({url: req.body.url, short: req.body.shortURL.shortURL()});
@@ -49,6 +28,7 @@ router.post('/urls', (req, res) => {
       res.status(500).json(err);
       tool.debug('Error: Finding all URL failed', data, 'Error');
     }, (data) => {
+      res.status(200).json(data);
       tool.debug('All URLs were accessed', data, true);
     })
   });
