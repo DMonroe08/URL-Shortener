@@ -1,0 +1,52 @@
+function (err){
+    if (err) return console.log(err);
+    console.log('n');
+}function (err){
+    if (err) return console.log(err);
+    console.log('n');
+}function (err){
+    if (err) return console.log(err);
+    console.log('n');
+}function (err){
+    if (err) return console.log(err);
+    console.log('test error');
+}function (err){
+    if (err) return console.log(err);
+    console.log('test error');
+}function (err){
+    if (err) return console.log(err);
+    console.log('test error');
+}
+========================
+error
+========================
+function (err){
+    if (err) return console.log(err);
+    console.log('test error');
+}
+========================
+error
+========================
+function (err){
+    if (err) return console.log(err);
+    console.log('test error');
+}
+========================
+error
+========================
+function (err){
+    if (err) return console.log(err);
+    console.log('test error');
+}function (err){
+    if (err) return console.log(err);
+    console.log('test error');
+}function (err){
+    if (err) return console.log(err);
+    console.log('test error');
+}function (err){
+    if (err) return console.log(err);
+    console.log('test error');
+}function (err){
+    if (err) return console.log(err);
+    console.log('test error');
+}
