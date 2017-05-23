@@ -1,4 +1,5 @@
 const url = require('../../models/url');
+const tool = require('../../../lib/tool');
 
 module.exports = (express) => {
   const router = express.Router();
@@ -20,13 +21,14 @@ module.exports = (express) => {
 router.post('/urls', (req, res) => {
 
 
-  url.create(req.body, (err) => {
+  url.create(req.body, (data) => {
     req.body.shortURL.shortURL();
     var shortURL = require('../shorten');
     res.json({url: req.body.url, short: req.body.shortURL.shortURL()});
-    res.status(500).json(err);
-  }, (data) => {
+    tool.debug('New URL was created', data);
     res.status(200).json(data);
+  }, (err) => {
+    res.status(500).json(err);
   })
 });
 
